@@ -1,0 +1,7 @@
+schedule:
+  outbox:
+    inicio-execucao: 1000
+    intervalo-execucao: 60000
+
+shedlock:
+  enabled: false

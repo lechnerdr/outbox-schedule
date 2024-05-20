@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: outbox-schedule
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  liquibase:
+    change-log: classpath:/config/liquibase/master.xml
+
+topic:
+  name: topic-replicacao
+
+logging:
+  level:
+    root: INFO
+    org:
+      springdoc: ERROR
+      springframework:
+        web: ERROR
+        kafka: ERROR
+      apache:
+        kafka: ERROR
+
+schedule:
+  outbox:
+    inicio-execucao: 5000
+    intervalo-execucao: 10000
